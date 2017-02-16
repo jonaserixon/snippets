@@ -17,13 +17,28 @@ app.engine('.hbs', exphbs({
 }));
 app.set('view engine', '.hbs');
 
+//database
+require('./config/database').initilize();
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+//Routes
 app.use('/', require('./routes/routes.js'));
+
+//Session
+app.use(session({
+    name: 'theserversession',
+    secret: 'hemligt',
+    saveUninitialized false,
+    cookie: {
+        secure: false,
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 *24
+    }
+}));
 
 
 //Starts web server

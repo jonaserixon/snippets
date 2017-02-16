@@ -2,30 +2,32 @@
 
 let mongoose = require("mongoose");
 
-const dbString = '';
 
-module.exports =  function() {
-    let db = mongoose.connect(dbString);
+module.exports = {
 
-    db.connection.on("connected", function() {
-        console.log("Mongoose connection open.");
-    });
+    initilize : function() {
+        // reed db Configuration
+        let db = mongoose.connection;
 
-    db.connection.on("error", function(err) {
-        console.error("Mongoose connection error: ", err);
-    });
+        // mayby should remove out from this file - EventEmitters?
+        db.on("error", console.error.bind(console, "connection error:"));
 
-    db.connection.on("disconnected", function() {
-        console.log("Mongoose connection disconnected.");
-    });
-
-    // If the Node process ends, close the Mongoose connection.
-    process.on("SIGINT", function() {
-        db.connection.close(function() {
-            console.log("Mongoose connection disconnected through app termination.");
-            process.exit(0);
+        db.once("open", function() {
+            console.log("Succesfully connected to mongoDB");
         });
-    });
 
-    return db;
-};
+        // If the Node process ends, close the Mongoose connection.
+        process.on("SIGINT", function() {
+            db.close(function() {
+                console.log("Mongoose connection disconnected through app termination.");
+                process.exit(0);
+            });
+        });
+
+        // Connect to the database.
+        mongoose.connect("mongodb://viatrophy:viatrophy@ds135089.mlab.com:35089/viatrophy");
+    }
+
+
+
+}

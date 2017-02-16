@@ -1,0 +1,32 @@
+{
+  "name": "je222zj-examination-2",
+  "version": "1.0.0",
+  "description": "Exam 2 assignment nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1dv023/je222zj-examination-2.git"
+  },
+  "keywords": [
+    "nodejs",
+    "exam",
+    "2"
+  ],
+  "author": "Jonas Erixon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1dv023/je222zj-examination-2/issues"
+  },
+  "homepage": "https://github.com/1dv023/je222zj-examination-2#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.1",
+    "mongoose": "^4.8.2",
+    "path": "^0.12.7"
+  }
+}

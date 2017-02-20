@@ -1,4 +1,17 @@
-<h1>hejsan svejsan!</h1>
-<a href="/login">Go to login page</a>
-{{>login}}
-{{>createUser}}
+<h1>Startsidan!</h1>
+
+<div id="startForms">
+    <a href="/createUser">Register here</a>
+    <a href="/createSnippet">Create a snippet</a>
+</div>
+
+
+<a class="snippetLink">
+    {{# each snippet }}
+        <div class="snippets">
+            <p>Description: {{ this.description }}</p>
+            <p>Content: {{ this.content }}</p>
+            <p class="createdAt">Created at: {{ this.createdAt }}</p>
+        </div>
+    {{/each}}
+</a>

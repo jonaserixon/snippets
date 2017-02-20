@@ -17,6 +17,7 @@ app.engine('.hbs', exphbs({
 }));
 app.set('view engine', '.hbs');
 
+
 //database
 require('./config/database').initilize();
 
@@ -25,20 +26,33 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 //Routes
 app.use('/', require('./routes/routes.js'));
+
 
 //Session
 app.use(session({
     name: 'theserversession',
     secret: 'hemligt',
-    saveUninitialized false,
+    saveUninitialized: false,
     cookie: {
         secure: false,
         httpOnly: true,
         maxAge: 1000 * 60 * 60 *24
     }
 }));
+
+
+//catch all 404
+app.use(function (request, response) {
+    response.status(404).send('error/404');
+});
+
+app.use(function (err, req, res) {
+    console.error(err.stack);
+    res.status(500).send('Something not working');
+});
 
 
 //Starts web server

@@ -26,11 +26,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-//Routes
-app.use('/', require('./routes/routes.js'));
-
-
 //Session
 app.use(session({
     name: 'theserversession',
@@ -42,6 +37,9 @@ app.use(session({
         maxAge: 1000 * 60 * 60 *24
     }
 }));
+
+//Routes
+app.use('/', require('./routes/routes.js'));
 
 
 //catch all 404

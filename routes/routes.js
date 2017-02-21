@@ -3,15 +3,16 @@
 let router = require("express").Router();
 let User = require('../models/Users');
 let Snippet = require('../models/Snippets');
+let mongoose = require('mongoose');
+
+
+//Routes -------------------------------------------------
 
 router.route('/')
     .get(function (req, res) {
-
-        Snippet.find({}).exec()
-            .then (function(doc) {
-                res.render("home",{snippet: doc});
-            });
+        res.render("home");
     });
+
 
 router.route('/login')
     .get(function (req, res) {
@@ -21,12 +22,11 @@ router.route('/login')
         res.redirect('/');
     });
 
+
 router.route('/createUser')
     .get(function (req, res) {
         res.render('createUser');
     })
-
-
     .post(function (req, res) {
         let userObject = new User({
             username: req.body.userReg,
@@ -35,7 +35,7 @@ router.route('/createUser')
 
         userObject.save(function (error) {
             if(error) {
-                return console.log(error);
+                console.log(error);
             }
             res.redirect('/');
         });
@@ -60,6 +60,26 @@ router.route('/createSnippet')
         });
     });
 
+
+router.route('/viewSnippet')
+    .get(function (req, res) {
+        Snippet.find({}).exec()
+            .then (function(doc) {
+                res.render("home",{snippet: doc});
+            });
+    });
+
+
+router.route('/deleteSnippet')
+    .get(function (req, res) {
+        res.render('delete');
+    })
+    .post(function (req, res) {
+        Snippet.find({}).remove().exec()
+            .then (function () {
+                res.redirect('/');
+            });
+    });
 
 
 module.exports = router;

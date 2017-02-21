@@ -1,13 +1,3 @@
-<h1>Startsidan!</h1>
-
-<div id="startForms">
-    <a href="/createUser">Register here</a>
-    <a href="/createSnippet">Create a snippet</a>
-    <a href="/viewSnippet">View snippets</a>
-    <!--<a href="/deleteSnippet/{{this.id}}">Delete snippets</a>-->
-
-</div>
-
 
 <a class="snippetLink">
     {{# each snippet }}
@@ -15,7 +5,8 @@
             <p>Description: {{ this.description }}</p>
             <p>Content: {{ this.content }}</p>
             <p class="createdAt">Created at: {{ this.createdAt }}</p>
-            <a href="/deleteSnippet/{{this._id}}">Delete snippet</a>
+            <a href="/delete/{{this._id}}">Delete</a>
+            <a href="/update/{{this._id}}">Update</a>
         </div>
     {{/each}}
 </a>

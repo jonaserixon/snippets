@@ -1,35 +1,62 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
 body {
-    background-color: darkgray;
+    background-color: #47808A;
+    padding-top: 50px;
+    font-family: "Open Sans", Impact;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: #24434D;
+
+}
+
+#parentWrapper {
+    height: 100%;
+    width: 100%;
+
+
 }
 
 #wrapper {
     margin: 0 auto;
     width: 1000px;
     height: 600px;
-    /*text-align: center;*/
-    border: 5px solid black;
-    background-color: white;
-    border-radius: 15px 15px;
+    background-color: #0F454F;
     padding-bottom: 15px;
     position: relative;
+    border: 3px solid black;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     overflow-y: scroll;
+    padding-right: 20px;
 }
 
 #headerDiv {
     display: inline-block;
-    margin-left: 10px;
-    margin-top: 5px;
+    width: 1000px;
+    height: 70px;
+    text-align: center;
+    padding-top: 35px;
+    border-bottom: 5px solid #012C34;
+    background-color: #C7DEE5;
 }
 
 #headerDiv a {
     padding-left: 40px;
+    margin-left: 10px;
+
     font-size: 30px;
+    /*color: #6A959D;*/
 }
 
 #startForms a {
     margin-left: 15px;
+    color: ghostwhite;
 }
 
 .formButton {
@@ -41,17 +68,40 @@ body {
     margin-top: 15px;
     margin-left: 15px;
     width: 290px;
-    background-color: ghostwhite;
-    border: 3px solid darkgray;
+    background-color: #B0D3DF;
+    border: 3px solid #012B35;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     float: left;
 }
 
+.snippets:hover {
+    background-color: #D6E9EF;
+}
+
+.snippetsUpdate {
+    padding: 5px;
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 290px;
+    background-color: #B0D3DF;
+    border: 3px solid #012B35;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+
 .createdAt {
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .centerDiv {
     text-align: center;
+}
+
+.centerSnippet {
+    margin-left: 350px;
 }
 
 

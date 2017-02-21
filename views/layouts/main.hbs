@@ -7,11 +7,14 @@
 
 </head>
 <body>
-  <div id="wrapper">
-      {{> header}}
-      {{{ body }}}
+    <div id="parentWrapper">
+        <div id="wrapper">
+            {{> header}}
+            {{{ body }}}
 
-  </div>
-      {{>footer}}
+        </div>
+
+    </div>
+    {{>footer}}
 </body>
 </html>

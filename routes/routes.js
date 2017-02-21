@@ -6,7 +6,7 @@ let Snippet = require('../models/Snippets');
 let mongoose = require('mongoose');
 
 
-//Routes -------------------------------------------------
+//Routes ------------------------------------------------->
 
 router.route('/')
     .get(function (req, res) {
@@ -32,7 +32,6 @@ router.route('/createUser')
             username: req.body.userReg,
             password: req.body.passReg
         });
-
         userObject.save(function (error) {
             if(error) {
                 console.log(error);
@@ -51,17 +50,15 @@ router.route('/createSnippet')
             description: req.body.snippetDesc,
             content: req.body.snippetCont
         });
-
         snippetObject.save(function (error) {
             if(error) {
-                return console.log(error);
             }
-            res.redirect('/');
+            res.redirect('/snippets');
         });
     });
 
 
-router.route('/viewSnippet')
+router.route('/snippets')
     .get(function (req, res) {
         Snippet.find({}).exec()
             .then (function(doc) {
@@ -70,26 +67,41 @@ router.route('/viewSnippet')
     });
 
 
-router.route('/deleteSnippet/:id')
+router.route('/delete/:id')
     .get(function (req, res) {
-        res.render('delete');
+        Snippet.findOne({ _id: req.params.id }).exec()
+            .then (function(doc) {
+                console.log(doc);
+                res.render("delete",{hej: doc});
+            });
     })
     .post(function (req, res) {
         Snippet.findOneAndRemove({ _id: req.params.id }).exec()
-            .then (function (err) {
-                res.redirect('/viewSnippet');
+            .then (function () {
+                res.redirect('/snippets');
             });
     });
 
 
+router.route('/update/:id')
+    .get(function (req, res) {
+        Snippet.findOne({ _id: req.params.id }).exec()
+            .then (function(doc) {
+                console.log(doc);
+                res.render("update",{hej: doc});
+            });
+    })
+    .post(function (req, res) {
+        let updateSnippet = {
+            description: req.body.snippetDesc,
+            content: req.body.snippetCont
+        };
 
+        Snippet.findOneAndUpdate({ _id: req.params.id }, { $set: updateSnippet}).exec()
+            .then (function () {
+                res.redirect('/snippets');
+            });
+    });
 
-
-    // .post(function (req, res) {
-    //     Snippet.findOneAndRemove({_id: req.params.id}, function (err) {
-    //         res.redirect('/');
-    //
-    //     });
-    // });
 
 module.exports = router;

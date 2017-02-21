@@ -70,16 +70,26 @@ router.route('/viewSnippet')
     });
 
 
-router.route('/deleteSnippet')
+router.route('/deleteSnippet/:id')
     .get(function (req, res) {
         res.render('delete');
     })
     .post(function (req, res) {
-        Snippet.find({}).remove().exec()
-            .then (function () {
-                res.redirect('/');
+        Snippet.findOneAndRemove({ _id: req.params.id }).exec()
+            .then (function (err) {
+                res.redirect('/viewSnippet');
             });
     });
 
+
+
+
+
+    // .post(function (req, res) {
+    //     Snippet.findOneAndRemove({_id: req.params.id}, function (err) {
+    //         res.redirect('/');
+    //
+    //     });
+    // });
 
 module.exports = router;

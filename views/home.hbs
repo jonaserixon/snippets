@@ -4,7 +4,7 @@
     <a href="/createUser">Register here</a>
     <a href="/createSnippet">Create a snippet</a>
     <a href="/viewSnippet">View snippets</a>
-    <a href="/deleteSnippet">Delete snippets</a>
+    <!--<a href="/deleteSnippet/{{this.id}}">Delete snippets</a>-->
 
 </div>
 
@@ -15,6 +15,7 @@
             <p>Description: {{ this.description }}</p>
             <p>Content: {{ this.content }}</p>
             <p class="createdAt">Created at: {{ this.createdAt }}</p>
+            <a href="/deleteSnippet/{{this._id}}">Delete snippet</a>
         </div>
     {{/each}}
 </a>

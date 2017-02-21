@@ -38,6 +38,7 @@ app.use(session({
     }
 }));
 
+
 //Routes
 app.use('/', require('./routes/routes.js'));
 

@@ -1,0 +1,20 @@
+<h2 class="centerDiv">{{snippet.description}}</h2>
+<div id="viewSnippet">
+
+    <p><pre><code>{{snippet.content}}</code></pre></p>
+</div>
+
+<div class="centerDiv">
+    <!--{{#if this.createdAt}}-->
+        <!--<p class="createdAt">Updated at: {{ snippet.updatedAt }}</p>-->
+
+    <!--{{ else }}-->
+        <!--<p class="createdAt">Created at: {{ snippet.createdAt }}</p>-->
+    <!--{{/if}}-->
+
+    <a href="/delete/{{snippet._id}}" class="snippetLink">Delete</a>
+    <a href="/update/{{snippet._id}}" class="snippetLink">Update</a>
+</div>
+
+
+

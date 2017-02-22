@@ -1,13 +1,17 @@
-
-    {{# each snippet }}
+{{# each snippet }}
         <div class="snippets">
-
-            <h4>{{ this.description }}</h4>
-
+            <a href="/viewSnippet/{{this._id}}"> {{ this.description }} </a>
             <p class="snippetContent">{{ this.content }}</p>
-            <p class="createdAt">Created at: {{ this.createdAt }}</p>
-            <a href="/delete/{{this._id}}">Delete</a>
-            <a href="/update/{{this._id}}">Update</a>
+
+            {{#if this.updatedAt}}
+                <p class="createdAt">Updated at: {{ this.updatedAt }}</p>
+
+            {{ else }}
+                <p class="createdAt">Created at: {{ this.createdAt }}</p>
+            {{/if}}
+
+            <a href="/delete/{{this._id}}" class="snippetLink">Delete</a>
+            <a href="/update/{{this._id}}" class="snippetLink">Update</a>
         </div>
-    {{/each}}
+{{/each}}
 

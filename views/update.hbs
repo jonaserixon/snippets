@@ -1,16 +1,13 @@
 <div class="centerSnippet">
 <form method="post">
     <div class="snippetsUpdate">
-        <h4>Description:</h4>
-        <p>{{ hej.description }}</p>
+        <input class="form-control" name="snippetDesc" value="{{ snippet.description }}" placeholder=""/>
             <hr color="black">
-        <h4>Content:</h4
-        <p>{{ hej.content }}</p>
+        <textarea class="readSnippet" name="snippetCont">{{ snippet.content }}</textarea>
             <hr color="black">
-        <p class="createdAt">Created at: {{ hej.createdAt }}</p>
+        <p class="createdAt">Created at: {{ snippet.createdAt }}</p>
 
-        <input class="form-control" name="snippetDesc" value="" placeholder="{{ hej.description }}"/>
-        <input class="form-control" name="snippetCont" value="" placeholder="{{ hej.content }}"/>
+
         <button type="submit" class="formButton">Update Snippet</button>
     </div>
 </form>

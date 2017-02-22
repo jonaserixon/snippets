@@ -14,7 +14,7 @@ router.route('/')
     });
 
 
-router.route('/login')
+router.route('/login')                        //let username = req.body.username sedan leta i databasen efter de usernamet
     .get(function (req, res) {
         res.render('login');
     })
@@ -33,9 +33,7 @@ router.route('/createUser')
             password: req.body.passReg
         });
         userObject.save(function (error) {
-            if(error) {
-                console.log(error);
-            }
+
             res.redirect('/');
         });
     });
@@ -52,7 +50,9 @@ router.route('/createSnippet')
         });
         snippetObject.save(function (error) {
             if(error) {
+                console.log(error);
             }
+            console.log(snippetObject);
             res.redirect('/snippets');
         });
     });
@@ -60,7 +60,7 @@ router.route('/createSnippet')
 
 router.route('/snippets')
     .get(function (req, res) {
-        Snippet.find({}).exec()
+        Snippet.find({  }).sort({createdAt: 'desc'}).exec()
             .then (function(doc) {
                 res.render("home",{snippet: doc});
             });
@@ -72,7 +72,7 @@ router.route('/delete/:id')
         Snippet.findOne({ _id: req.params.id }).exec()
             .then (function(doc) {
                 console.log(doc);
-                res.render("delete",{hej: doc});
+                res.render("delete",{snippet: doc});
             });
     })
     .post(function (req, res) {
@@ -87,19 +87,29 @@ router.route('/update/:id')
     .get(function (req, res) {
         Snippet.findOne({ _id: req.params.id }).exec()
             .then (function(doc) {
-                console.log(doc);
-                res.render("update",{hej: doc});
+                res.render("update",{snippet: doc});
             });
     })
     .post(function (req, res) {
+
         let updateSnippet = {
             description: req.body.snippetDesc,
-            content: req.body.snippetCont
+            content: req.body.snippetCont,
+            updatedAt: Date.now()
         };
 
         Snippet.findOneAndUpdate({ _id: req.params.id }, { $set: updateSnippet}).exec()
             .then (function () {
                 res.redirect('/snippets');
+            });
+    });
+
+
+router.route('/viewSnippet/:id')
+    .get(function (req, res) {
+        Snippet.findOne({ _id: req.params.id }).exec()
+            .then (function(doc) {
+                res.render("viewSnippet",{snippet: doc});
             });
     });
 

@@ -1,12 +1,13 @@
 
-<a class="snippetLink">
     {{# each snippet }}
         <div class="snippets">
-            <p>Description: {{ this.description }}</p>
-            <p>Content: {{ this.content }}</p>
+
+            <h4>{{ this.description }}</h4>
+
+            <p class="snippetContent">{{ this.content }}</p>
             <p class="createdAt">Created at: {{ this.createdAt }}</p>
             <a href="/delete/{{this._id}}">Delete</a>
             <a href="/update/{{this._id}}">Update</a>
         </div>
     {{/each}}
-</a>
+

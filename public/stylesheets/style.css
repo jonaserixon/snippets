@@ -2,7 +2,7 @@
 
 body {
     background-color: #47808A;
-    padding-top: 50px;
+    /*padding-top: 50px;*/
     font-family: "Open Sans", Impact;
 }
 
@@ -23,7 +23,7 @@ a:hover {
 #wrapper {
     margin: 0 auto;
     width: 1000px;
-    height: 600px;
+    height: 550px;
     background-color: #0F454F;
     padding-bottom: 15px;
     position: relative;
@@ -31,16 +31,20 @@ a:hover {
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     overflow-y: scroll;
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 0 0 5px 5px;
 }
 
 #headerDiv {
-    display: inline-block;
+    margin: 0 auto;
+    position: relative;
     width: 1000px;
     height: 70px;
     text-align: center;
     padding-top: 35px;
-    border-bottom: 5px solid #012C34;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    border-radius: 5px 5px 0 0;
     background-color: #C7DEE5;
 }
 

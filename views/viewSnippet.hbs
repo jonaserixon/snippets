@@ -5,15 +5,17 @@
 </div>
 
 <div class="centerDiv">
-    <!--{{#if this.createdAt}}-->
-        <!--<p class="createdAt">Updated at: {{ snippet.updatedAt }}</p>-->
+    {{#if this.createdAt}}
+        <p class="createdAt">Updated at: {{ snippet.updatedAt }}</p>
 
-    <!--{{ else }}-->
-        <!--<p class="createdAt">Created at: {{ snippet.createdAt }}</p>-->
-    <!--{{/if}}-->
+    {{ else }}
+        <p class="createdAt">Created at: {{ snippet.createdAt }}</p>
+    {{/if}}
 
-    <a href="/delete/{{snippet._id}}" class="snippetLink">Delete</a>
-    <a href="/update/{{snippet._id}}" class="snippetLink">Update</a>
+    {{#if user}}
+        <a href="/delete/{{this._id}}" class="snippetLink">Delete</a>
+        <a href="/update/{{this._id}}" class="snippetLink">Update</a>
+    {{/if}}
 </div>
 
 

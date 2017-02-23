@@ -10,8 +10,11 @@
 </head>
 <body>
     <div id="parentWrapper">
+        {{> header}}
         <div id="wrapper">
-            {{> header}}
+            {{#if user}}
+                <p>Logged in as: {{  test.username }}</p>
+            {{/if}}
             {{{ body }}}
 
         </div>

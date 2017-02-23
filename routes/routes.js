@@ -14,12 +14,22 @@ router.route('/')
     });
 
 
-router.route('/login')                        //let username = req.body.username sedan leta i databasen efter de usernamet
+router.route('/login')
     .get(function (req, res) {
         res.render('login');
     })
     .post(function (req, res) {
-        res.redirect('/');
+        let username = req.body.username;
+        let password = req.body.password;
+        User.findOne({ username: username, password: password}).exec()
+            .then(function (user) {
+                if (user) {
+                    req.session.user = user;
+
+                }
+
+                res.redirect('/snippets');
+            })
     });
 
 

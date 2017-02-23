@@ -1,6 +1,6 @@
 {{# each snippet }}
     <div class="snippets">
-        <a href="/viewSnippet/{{this._id}}"> {{ this.description }} </a>
+        <a href="/viewSnippet/{{this._id}}" id="snippetTitle"> {{ this.description }} </a>
         <p class="snippetContent">{{ this.content }}</p>
 
         {{#if this.updatedAt}}

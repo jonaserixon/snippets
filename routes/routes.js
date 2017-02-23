@@ -81,7 +81,6 @@ router.route('/delete/:id')
     .get(function (req, res) {
         Snippet.findOne({ _id: req.params.id }).exec()
             .then (function(doc) {
-                console.log(doc);
                 res.render("delete",{snippet: doc});
             });
     })

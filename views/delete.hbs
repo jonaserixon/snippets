@@ -1,18 +1,23 @@
-<div class="centerSnippet">
     <form method="post">
-        <div class="snippetsUpdate">
-            <h4>Description:</h4>
-            <p>{{ snippet.description }}</p>
-            <hr color="black">
-            <h4>Content:</h4
-            <p>{{ snippet.content }}</p>
-            <hr color="black">
-            <p class="createdAt">Created at: {{ snippet.createdAt }}</p>
+        <h2 class="centerDiv">{{snippet.description}}</h2>
+        <div id="viewSnippet">
 
-            <button type="submit" class="centerDiv">Delete Snippet</button>
+            <p><pre><code>{{snippet.content}}</code></pre></p>
+        </div>
+
+        <div class="centerDiv">
+            {{#if this.createdAt}}
+                <p class="createdAt">Updated at: {{ snippet.updatedAt }}</p>
+
+            {{ else }}
+                <p class="createdAt">Created at: {{ snippet.createdAt }}</p>
+            {{/if}}
+
+               <button type="submit">Delete</button>
+
         </div>
     </form>
-</div>
+
 
 
 

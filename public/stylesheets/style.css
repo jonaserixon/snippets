@@ -49,23 +49,17 @@ a:hover {
     background-color: #C7DEE5;
 }
 
-@keyframes headerLinks {
-    from {font-size: 30px;}
-    to {font-size: 29px;}
-}
+
 
 #headerDiv a {
     padding-left: 40px;
     margin-left: 10px;
     font-size: 30px;
-    /*color: #6A959D;*/
-    /*transition: color 1s;*/
-    /*color:blue;*/
+    transition: font-size 0.1s;
 }
 
 #headerDiv a:hover {
-    animation-name: headerLinks;
-    animation-duration: 0.1s;
+
     font-size: 29px;
     font-weight: bold;
     /*color:yellow;*/
@@ -93,15 +87,21 @@ a:hover {
     border-radius: 10px 10px 10px 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     float: left;
+    transition: box-shadow 0.1s;
+}
+
+.snippets:hover {
+    box-shadow:  4px 4px 4px rgba(0,0,21,1);
 }
 
 .snippets pre {
     display: inline-block;
     max-height: 50px;
+    margin-left: -5px;
     white-space: nowrap;
     font-size: 12px;
     opacity:0.6;
-    transition: opacity 0.3s;
+    transition: opacity 0.15s;
     text-overflow: ellipsis;
 }
 
@@ -110,49 +110,37 @@ a:hover {
 }
 
 .snippets a {
-    text-align: center;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: normal;
     color: black;
+    transition: font-size 0.1s;
 
 }
 
-.snippetLink{
-    font-size: 15px;
-    margin-left: 5px;
-}
-
-.snippetLink:hover {
-    animation-name: linkText;
-    animation-duration: 0.3s;
-    font-size: 14px;
+.snippets a:hover {
     font-weight: bold;
-    color: black;
+    font-size: 13.5px;
 }
 
 .snippetContent {
     font-size: 14px;
 }
 
+
 #snippetTitle {
+    text-decoration: underline;
     font-size: 18px;
-    transition: font-size 0.1s;
+    font-weight: bold;
+    transition: font-size 0.2s;
 }
 
 #snippetTitle:hover {
-    font-size: 20px
+    opacity: 0.8;
 }
 
-/*@keyframes linkText {*/
-    /*from {font-size: 15px;}*/
-    /*to {font-size: 14px;}*/
-/*}*/
 
 
 
-.snippets:hover {
-    /*background-color: #D6E9EF;*/
-}
 
 .snippetsUpdate {
     padding: 5px;
@@ -203,6 +191,26 @@ a:hover {
     margin-left: 60px;
     text-align: center;
 }
+
+.errorDiv {
+    margin: 0 auto;
+    text-align: center;
+    width: 700px;
+    height: 200px;
+    background-color: lightblue;
+}
+
+.errorDiv h1 {
+    font-size: 65px;
+}
+
+.errorDiv a {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
+
 
 
 footer {

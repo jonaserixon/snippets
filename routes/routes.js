@@ -68,7 +68,12 @@ router.route('/createUser')
 
 router.route('/createSnippet')
     .get(function (req, res) {
-        res.render('createSnippet');
+        if(res.locals.user) {
+            res.render('createSnippet');
+        } else {
+            res.render('403');
+        }
+
     })
     .post(function (req, res) {
         let snippetObject = new Snippet({

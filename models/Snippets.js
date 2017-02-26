@@ -2,6 +2,7 @@
 
 let mongoose = require('mongoose');
 
+
 let snippetSchema = mongoose.Schema({
     description: {type: String, required: true },
     content: {type: String, required: true },

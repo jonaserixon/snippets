@@ -10,7 +10,7 @@ let mongoose = require('mongoose');
 
 router.route('/')
     .get(function (req, res) {
-        res.render("home");
+        res.render('home');
     });
 
 
@@ -25,11 +25,19 @@ router.route('/login')
             .then(function (user) {
                 if (user) {
                     req.session.user = user;
-
                 }
-
-                res.redirect('/snippets');
+                res.render('home', {userLogin: req.session.user.username});
             })
+    });
+
+
+router.route('/logout')
+    .get(function (req, res) {
+        res.render('logout');
+    })
+    .post(function (req, res) {
+        req.session.destroy();
+        res.redirect('/snippets');
     });
 
 
@@ -38,14 +46,23 @@ router.route('/createUser')
         res.render('createUser');
     })
     .post(function (req, res) {
-        let userObject = new User({
-            username: req.body.userReg,
-            password: req.body.passReg
-        });
-        userObject.save(function (error) {
 
-            res.redirect('/');
-        });
+        let userReg = req.body.userReg;
+
+        User.findOne({ username: userReg}).exec()
+            .then(function (user) {
+                if (user) {
+                    return res.render('createUser');
+                } else {
+                    let userObject = new User({
+                        username: req.body.userReg,
+                        password: req.body.passReg
+                    });
+                    userObject.save(function (error) {
+                        res.redirect('/');
+                    });
+                }
+            });
     });
 
 
@@ -62,7 +79,6 @@ router.route('/createSnippet')
             if(error) {
                 console.log(error);
             }
-            console.log(snippetObject);
             res.redirect('/snippets');
         });
     });
@@ -72,17 +88,21 @@ router.route('/snippets')
     .get(function (req, res) {
         Snippet.find({  }).sort({createdAt: 'desc'}).exec()
             .then (function(doc) {
-                res.render("home",{snippet: doc});
+                res.render('home',{snippet: doc});
             });
     });
 
 
 router.route('/delete/:id')
     .get(function (req, res) {
-        Snippet.findOne({ _id: req.params.id }).exec()
-            .then (function(doc) {
-                res.render("delete",{snippet: doc});
-            });
+        if(res.locals.user) {
+            Snippet.findOne({_id: req.params.id}).exec()
+                .then(function (doc) {
+                    res.render('delete', {snippet: doc});
+                });
+        } else {
+            res.render('403');
+        }
     })
     .post(function (req, res) {
         Snippet.findOneAndRemove({ _id: req.params.id }).exec()
@@ -94,10 +114,14 @@ router.route('/delete/:id')
 
 router.route('/update/:id')
     .get(function (req, res) {
-        Snippet.findOne({ _id: req.params.id }).exec()
-            .then (function(doc) {
-                res.render("update",{snippet: doc});
-            });
+        if(res.locals.user) {
+            Snippet.findOne({ _id: req.params.id }).exec()
+                .then (function(doc) {
+                    res.render('update',{snippet: doc});
+                });
+        } else {
+            res.render('403');
+        }
     })
     .post(function (req, res) {
 
@@ -118,9 +142,17 @@ router.route('/viewSnippet/:id')
     .get(function (req, res) {
         Snippet.findOne({ _id: req.params.id }).exec()
             .then (function(doc) {
-                res.render("viewSnippet",{snippet: doc});
+                res.render('viewSnippet',{snippet: doc});
+            });
+    })
+    .post(function (req, res) {
+        Snippet.findOneAndRemove({_id: req.params.id}).exec()
+            .then(function () {
+                res.redirect('/snippets');
             });
     });
+
+
 
 
 module.exports = router;

@@ -4,7 +4,7 @@ let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 
 let userSchema = mongoose.Schema({
-    username: { type: String, unique: true, required: true },
+    username: { type: String, unique: true, required: true, min: 4 },
     password: { type: String, required: true },
     createdAt: { type: Date, required: true, default: Date.now },
     updatedAt: { type: Date, required: true, default: Date.now }

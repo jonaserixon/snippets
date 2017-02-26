@@ -1,11 +1,11 @@
 <h2 class="centerDiv">{{snippet.description}}</h2>
 <div id="viewSnippet">
 
-    <p><pre><code>{{snippet.content}}</code></pre></p>
+    <pre><code>{{snippet.content}}</code></pre>
 </div>
 
 <div class="centerDiv">
-    {{#if this.createdAt}}
+    {{#if snippet.createdAt}}
         <p class="createdAt">Updated at: {{ snippet.updatedAt }}</p>
 
     {{ else }}
@@ -13,8 +13,8 @@
     {{/if}}
 
     {{#if user}}
-        <a href="/delete/{{this._id}}" class="snippetLink">Delete</a>
-        <a href="/update/{{this._id}}" class="snippetLink">Update</a>
+        <a href="/delete/{{snippet._id}}" class="snippetLink">Delete</a>
+        <a href="/update/{{snippet._id}}" class="snippetLink">Update</a>
     {{/if}}
 </div>
 

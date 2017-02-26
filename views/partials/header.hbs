@@ -1,6 +1,8 @@
 <div id="headerDiv">
+
         {{#if user}}
             <a href="/logout">Logout</a>
+
         {{else}}
             <a href="/login">Login</a>
         {{/if}}
@@ -8,7 +10,7 @@
         <a href="/createUser">Register</a>
         <a href="/createSnippet">Create a snippet</a>
         <a href="/snippets">View snippets</a>
-
+        <a>{{userLogin}}</a>
 
 
 </div>

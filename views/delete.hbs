@@ -1,22 +1,23 @@
-    <form method="post">
-        <h2 class="centerDiv">{{snippet.description}}</h2>
-        <div id="viewSnippet">
+<form action="/delete/{{snippet._id}} " method="post">
 
-            <p><pre><code>{{snippet.content}}</code></pre></p>
-        </div>
+    <h2 class="centerDiv">{{snippet.description}}</h2>
 
-        <div class="centerDiv">
-            {{#if this.createdAt}}
-                <p class="createdAt">Updated at: {{ snippet.updatedAt }}</p>
+    <div id="viewSnippet">
+        <p><pre><code>{{snippet.content}}</code></pre></p>
+    </div>
 
-            {{ else }}
-                <p class="createdAt">Created at: {{ snippet.createdAt }}</p>
-            {{/if}}
+    <div class="centerDiv">
 
-               <button type="submit">Delete</button>
+        {{#if snippet.updatedAt}}
+            <p class="createdAt">Updated at: {{ snippet.updatedAt }}</p>
 
-        </div>
-    </form>
+        {{ else }}
+            <p class="createdAt">Created at: {{ snippet.createdAt }}</p>
+        {{/if}}
+
+        <button type="submit">Delete</button>
+    </div>
+</form>
 
 
 

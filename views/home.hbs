@@ -1,7 +1,11 @@
 {{# each snippet }}
     <div class="snippets">
         <a href="/viewSnippet/{{this._id}}" id="snippetTitle"> {{ this.description }} </a>
-        <p class="snippetContent">{{ this.content }}</p>
+        <!--<p class="snippetContent">{{ this.content }}</p>-->
+
+        <pre><code> {{this.content}} </code></pre>
+
+
 
         {{#if this.updatedAt}}
             <p class="createdAt">Updated at: {{ this.updatedAt }}</p>
@@ -15,6 +19,8 @@
         {{/if}}
     </div>
 {{/each}}
+
+
 
 
 

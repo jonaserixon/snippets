@@ -2,15 +2,15 @@
 
         {{#if user}}
             <a href="/logout">Logout</a>
-
         {{else}}
             <a href="/login">Login</a>
         {{/if}}
 
-        <a href="/createUser">Register</a>
+        <a href="/register">Register</a>
+
+    {{#if user}}
         <a href="/createSnippet">Create a snippet</a>
+    {{/if}}
+
         <a href="/snippets">View snippets</a>
-        <a>{{userLogin}}</a>
-
-
 </div>

@@ -2,6 +2,12 @@
 <form method="post">
     <div class="snippetsUpdate">
         <input class="form-control" name="snippetDesc" value="{{ snippet.description }}" placeholder=""/>
+        <select id="codeLanguage" name="codeLanguage">
+            <option value="{{ snippet.language }}">{{ snippet.language }}</option>
+            <option name="Javascript" value="Javascript">Javascript</option>
+            <option name="HTML" value="HTML">HTML</option>
+            <option name="CSS" value="CSS">CSS</option>
+        </select>
             <hr color="black">
         <textarea class="readSnippet" name="snippetCont">{{ snippet.content }}</textarea>
             <hr color="black">

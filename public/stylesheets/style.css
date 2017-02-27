@@ -4,6 +4,7 @@ body {
     background-color: #47808A;
     /*padding-top: 50px;*/
     font-family: "Open Sans", Impact;
+    padding-top: 100px;
 }
 
 ::-webkit-scrollbar {
@@ -23,7 +24,7 @@ a:hover {
 #wrapper {
     margin: 0 auto;
     width: 1000px;
-    height: 550px;
+    height: 450px;
     background-color: #0F454F;
     padding-bottom: 15px;
     position: relative;
@@ -38,31 +39,27 @@ a:hover {
     margin: 0 auto;
     position: relative;
     width: 1000px;
-    height: 70px;
-    text-align: center;
-    padding-top: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-top: 3px solid black;
     border-left: 3px solid black;
     border-right: 3px solid black;
     border-radius: 5px 5px 0 0;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-    background-color: #C7DEE5;
+    box-shadow:  2px 0 25px 2px #6E6E6E inset;
+    background-color: #A8E0E9;
+    text-align: center;
 }
 
-
-
 #headerDiv a {
-    padding-left: 40px;
-    margin-left: 10px;
+    padding-left: 23px;
+    padding-right: 23px;
     font-size: 30px;
-    transition: font-size 0.1s;
+    color: #083B45;
 }
 
 #headerDiv a:hover {
-
-    font-size: 29px;
     font-weight: bold;
-    /*color:yellow;*/
 }
 
 #startForms a {
@@ -82,7 +79,6 @@ a:hover {
     margin-left: 15px;
     width: 290px;
     max-height: 200px;
-    background-color: #B0D3DF;
     border: 3px solid #012B35;
     border-radius: 10px 10px 10px 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
@@ -109,22 +105,36 @@ a:hover {
     opacity:1
 }
 
-.snippets a {
+.snippetLink {
     font-size: 14px;
     font-weight: normal;
     color: black;
     transition: font-size 0.1s;
-
 }
 
-.snippets a:hover {
+.snippetLink:hover {
     font-weight: bold;
     font-size: 13.5px;
 }
 
+
+#snippetLanguage {
+    float: right;
+    background-color: #8FC3CC;
+    transition: none;
+}
+
+#snippetLanguage:hover {
+    transition: none;
+}
+
+
+
 .snippetContent {
     font-size: 14px;
 }
+
+
 
 
 #snippetTitle {
@@ -140,9 +150,8 @@ a:hover {
 
 
 
-
-
 .snippetsUpdate {
+    text-align: center;
     padding: 5px;
     margin-top: 15px;
     margin-left: 15px;
@@ -161,35 +170,41 @@ a:hover {
 
 #viewSnippet {
     margin: 0 auto;
-    /*background-color: white;*/
     width: 500px;
     padding: 10px;
 }
 
-
-
-
-
-
 .createdAt {
     font-size: 10px;
+}
+
+#createdBy {
+    float: right;
+    font-size: 10px;
+    margin-top: 5px;
 }
 
 .centerDiv {
     text-align: center;
 }
 
-.centerDiv {
-    color: #B0D3DF;
-}
+
 
 .centerSnippet {
     margin-left: 350px;
 }
 
 .form-control {
-    margin-left: 60px;
-    text-align: center;
+    display: block;
+    font-size: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.centerForm {
+    position: relative;
+    margin: 0 auto;
+    width: 200px;
 }
 
 .errorDiv {
@@ -210,11 +225,30 @@ a:hover {
 }
 
 
+#codeLanguage {
+    width: 148.8px;
+}
 
+#loggedIn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 10px;
+    float: left;
 
+}
 
 footer {
-    margin-top: 20px;
+    margin: 0 auto;
+    width: 400px;
+    /*margin-top: 20px;*/
     text-align: center;
+    background-color: #3FF161;
+    border-radius:  10px 10px 10px 10px;
+    opacity: 0.5;
 }
+
+
+
+
 

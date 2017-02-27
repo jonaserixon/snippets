@@ -2,15 +2,22 @@
     <form action="/createSnippet" method="post">
         <div class="snippetsUpdate">
             <input class="form-control" name="snippetDesc" value="" placeholder="Title"/>
-            <p></p>
+
+            <select name="codeLanguage">
+                <option disabled selected>Select your language</option>
+                <option name="Javascript" value="Javascript">Javascript</option>
+                <option name="HTML" value="HTML">HTML</option>
+                <option name="CSS" value="CSS">CSS</option>
+            </select>
+
             <hr color="black">
             <textarea class="readSnippet" name="snippetCont" placeholder="Your code goes here..."></textarea>
-            <p></p>
+
             <hr color="black">
 
 
 
-            <button type="submit" class="formButton">Submit Snippet</button>
+            <button type="submit"  class="formButton">Submit Snippet</button>
         </div>
     </form>
 </div>

@@ -10,7 +10,7 @@ let mongoose = require('mongoose');
 
 router.route('/')
     .get(function (req, res) {
-        res.render('home');
+        res.redirect('/snippets');
     });
 
 
@@ -26,7 +26,7 @@ router.route('/login')
                 if (user) {
                     req.session.user = user;
                 }
-                res.render('home', {userLogin: req.session.user.username});
+                res.redirect('/snippets');
             })
     });
 
@@ -41,9 +41,9 @@ router.route('/logout')
     });
 
 
-router.route('/createUser')
+router.route('/register')
     .get(function (req, res) {
-        res.render('createUser');
+        res.render('register');
     })
     .post(function (req, res) {
 
@@ -52,14 +52,14 @@ router.route('/createUser')
         User.findOne({ username: userReg}).exec()
             .then(function (user) {
                 if (user) {
-                    return res.render('createUser');
+                    return res.render('register');
                 } else {
                     let userObject = new User({
                         username: req.body.userReg,
                         password: req.body.passReg
                     });
                     userObject.save(function (error) {
-                        res.redirect('/');
+                        res.redirect('/login');
                     });
                 }
             });
@@ -78,7 +78,9 @@ router.route('/createSnippet')
     .post(function (req, res) {
         let snippetObject = new Snippet({
             description: req.body.snippetDesc,
-            content: req.body.snippetCont
+            content: req.body.snippetCont,
+            createdBy: res.locals.user.username,
+            language: req.body.codeLanguage
         });
         snippetObject.save(function (error) {
             if(error) {
@@ -133,6 +135,7 @@ router.route('/update/:id')
         let updateSnippet = {
             description: req.body.snippetDesc,
             content: req.body.snippetCont,
+            language: req.body.codeLanguage,
             updatedAt: Date.now()
         };
 

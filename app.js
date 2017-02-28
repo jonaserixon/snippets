@@ -39,6 +39,13 @@ app.use(session({
     }
 }));
 
+app.use(function (req, res, next) {
+    res.locals.flash = req.session.flash;
+
+    delete req.session.flash;
+
+    next();
+});
 
 app.use(function(req, res, next) {
     res.locals.user = req.session.user;
@@ -51,14 +58,13 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/routes.js'));
 
 
-//catch all 404
+//catch all 404 & 500
 app.use(function (request, response) {
     response.status(404).render('404');
 });
 
-
-app.use(function (err, req, res) {
-    response.status(403).render('403');
+app.use(function (request, response) {
+    response.status(500).render('500');
 });
 
 

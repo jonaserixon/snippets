@@ -1,6 +1,8 @@
+
 <form class="centerForm" method="post">
-    <input class="form-control" type="text" name="userReg" value="" placeholder="Enter username"/>
-    <input class="form-control" type="password" name="passReg" value="" placeholder="Enter password"/>
+    {{> flash }}
+    <input class="form-control" type="text" name="userReg" value="" placeholder="Choose username"/>
+    <input class="form-control" type="password" name="passReg" value="" placeholder="Choose password"/>
 
     <button type="submit" class="formButton">Register</button>
 </form>

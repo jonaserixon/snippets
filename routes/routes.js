@@ -4,10 +4,10 @@ let router = require("express").Router();
 let User = require('../models/Users');
 let Snippet = require('../models/Snippets');
 let mongoose = require('mongoose');
+let bcrypt = require('bcrypt-nodejs');
 
 
 //Routes ------------------------------------------------->
-
 router.route('/')
     .get(function (req, res) {
         res.redirect('/snippets');
@@ -21,14 +21,30 @@ router.route('/login')
     .post(function (req, res) {
         let username = req.body.username;
         let password = req.body.password;
-        User.findOne({ username: username, password: password}).exec()
-            .then(function (user) {
+
+        User.findOne({ username: username }).exec()
+            .then((user) => {
                 if (user) {
-                    req.session.user = user;
+                    bcrypt.compare(password, user.password, (err, result) =>  {
+                        if(err) {
+                            return console.log(err);
+                        }
+                        if(result) {
+                            req.session.user = user;
+                            res.redirect('/snippets');
+                        }
+                    });
+                } else {
+                    req.session.flash = {
+                        type: 'fail',
+                        message: 'Username or password is invalid!'
+                    };
+                    return res.redirect('/login');
                 }
-                res.redirect('/snippets');
             })
+            .catch()
     });
+
 
 
 router.route('/logout')
@@ -52,13 +68,34 @@ router.route('/register')
         User.findOne({ username: userReg}).exec()
             .then(function (user) {
                 if (user) {
-                    return res.render('register');
+                    req.session.flash = {
+                        type: 'fail',
+                        message: 'Username already taken!'
+                    };
+                    return res.redirect('/register');
                 } else {
                     let userObject = new User({
                         username: req.body.userReg,
                         password: req.body.passReg
                     });
-                    userObject.save(function (error) {
+
+                    if(userObject.username.length < 3) {
+                        req.session.flash = {
+                            type: 'fail',
+                            message: 'Username needs to be at least 3 characters, dude!'
+                        };
+                        return res.redirect('/register');
+                    }
+
+                    if(userObject.password.length < 4) {
+                        req.session.flash = {
+                            type: 'fail',
+                            message: 'Password needs to be at least 4 characters!'
+                        };
+                        return res.redirect('/register');
+                    }
+
+                    userObject.save(function () {
                         res.redirect('/login');
                     });
                 }
@@ -82,6 +119,31 @@ router.route('/createSnippet')
             createdBy: res.locals.user.username,
             language: req.body.codeLanguage
         });
+
+        if(snippetObject.description === '') {
+            req.session.flash = {
+                type: 'fail',
+                message: 'You totally forgot the title, LOL!'
+            };
+            return res.redirect('/createSnippet');
+        }
+
+        if(snippetObject.language === undefined) {
+            req.session.flash = {
+                type: 'fail',
+                message: 'Please select your code language...!!'
+            };
+            return res.redirect('/createSnippet');
+        }
+
+        if(snippetObject.content === '') {
+            req.session.flash = {
+                type: 'fail',
+                message: 'You forgot to write some code, stupid!'
+            };
+            return res.redirect('/createSnippet');
+        }
+
         snippetObject.save(function (error) {
             if(error) {
                 console.log(error);

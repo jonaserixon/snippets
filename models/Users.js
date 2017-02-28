@@ -1,15 +1,30 @@
 'use strict';
 
 let mongoose = require('mongoose');
-let bcrypt = require('bcrypt');
+let bcrypt = require('bcrypt-nodejs');
 
 let userSchema = mongoose.Schema({
-    username: { type: String, unique: true, required: true, min: 4 },
+    username: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     createdAt: { type: Date, required: true, default: Date.now },
     updatedAt: { type: Date, required: true, default: Date.now }
 });
 
-let User = mongoose.model('Users', userSchema);
+userSchema.pre("save", function(next) {
+    let user = this;
+    bcrypt.genSalt(10, function(err, salt) {
+        if(err) { return next(err); }
+
+        // Using https://www.npmjs.com/package/bcrypt-nodejs
+        bcrypt.hash(user.password, salt, null, function(err, hash) {
+            if(err) { return next(err); }
+
+            user.password = hash;
+            next();
+        });
+    });
+});
+
+let User = mongoose.model('users', userSchema);
 
 module.exports = User;

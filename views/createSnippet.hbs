@@ -2,7 +2,6 @@
     <form action="/createSnippet" method="post">
         <div class="snippetsUpdate">
             <input class="form-control" name="snippetDesc" value="" placeholder="Title"/>
-
             <select name="codeLanguage">
                 <option disabled selected>Select your language</option>
                 <option name="Javascript" value="Javascript">Javascript</option>
@@ -14,10 +13,8 @@
             <textarea class="readSnippet" name="snippetCont" placeholder="Your code goes here..."></textarea>
 
             <hr color="black">
-
-
-
             <button type="submit"  class="formButton">Submit Snippet</button>
         </div>
     </form>
+    {{> flash }}
 </div>

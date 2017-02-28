@@ -1,9 +1,7 @@
 {{# each snippet }}
-
-    {{#if this.language}}
-        <div class="snippets" style="background-color: #B0D3DF">
+        <div class="snippets">
             <a href="/viewSnippet/{{this._id}}" id="snippetTitle"> {{ this.description }} </a>
-            <a id="snippetLanguage">{{this.language}}</a>
+            <a id="snippetLanguage">#{{this.language}}</a>
             <br>
             <pre><code> {{this.content}} </code></pre>
 
@@ -13,8 +11,6 @@
                 <p class="createdAt">Created at: {{ this.createdAt }}</p>
             {{/if}}
 
-
-
             {{#if ../user}}
                 <a href="/delete/{{this._id}}" class="snippetLink">Delete</a>
                 <a href="/update/{{this._id}}" class="snippetLink">Update</a>
@@ -22,31 +18,6 @@
 
             <p id="createdBy">Snippet by: <strong>{{this.createdBy}}</strong></p>
         </div>
-
-    {{else}}
-        <div class="snippets" style="background-color: #7CB6CA">
-            <a href="/viewSnippet/{{this._id}}" id="snippetTitle"> {{ this.description }} </a>
-            <a id="snippetLanguage">{{this.language}}</a>
-            <br>
-            <pre><code> {{this.content}} </code></pre>
-
-
-
-            {{#if this.updatedAt}}
-                <p class="createdAt">Updated at: {{ this.updatedAt }}</p>
-            {{ else }}
-                <p class="createdAt">Created at: {{ this.createdAt }}</p>
-            {{/if}}
-
-            {{#if ../user}}
-                <a href="/delete/{{this._id}}" class="snippetLink">Delete</a>
-                <a href="/update/{{this._id}}" class="snippetLink">Update</a>
-            {{/if}}
-
-            <p id="createdBy">Snippet by: <strong>{{this.createdBy}}</strong></p>
-        </div>
-    {{/if}}
-
 {{/each}}
 
 

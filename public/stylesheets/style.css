@@ -4,7 +4,14 @@ body {
     background-color: #47808A;
     /*padding-top: 50px;*/
     font-family: "Open Sans", Impact;
-    padding-top: 100px;
+    padding-top: 20px;
+}
+
+header {
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 20px;
+    text-decoration: underline;
 }
 
 ::-webkit-scrollbar {
@@ -72,7 +79,7 @@ a:hover {
 }
 
 .snippets {
-
+    background-color: #B0D3DF;
     overflow: hidden;
     padding: 5px;
     margin-top: 15px;
@@ -238,10 +245,25 @@ a:hover {
 
 }
 
+.fail {
+    background-color: orangered;
+    width: 290px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.success {
+    background-color: lightseagreen;
+    margin-top: 10px;
+}
+
+h2 {
+    color: #7CB6CA;
+}
+
 footer {
     margin: 0 auto;
     width: 400px;
-    /*margin-top: 20px;*/
     text-align: center;
     background-color: #3FF161;
     border-radius:  10px 10px 10px 10px;

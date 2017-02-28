@@ -7,21 +7,24 @@ let mongoose = require('mongoose');
 let bcrypt = require('bcrypt-nodejs');
 
 
-//Routes ------------------------------------------------->
+//Routes -----------------------------------------------------
 router.route('/')
     .get(function (req, res) {
         res.redirect('/snippets');
     });
 
-
+/**
+ * Login with user inputs and comparing hashed password
+ */
 router.route('/login')
     .get(function (req, res) {
-        res.render('login');
+        res.render('users/login');
     })
     .post(function (req, res) {
         let username = req.body.username;
         let password = req.body.password;
 
+        //Finds username and compares the passwords.
         User.findOne({ username: username }).exec()
             .then((user) => {
                 if (user) {
@@ -46,10 +49,12 @@ router.route('/login')
     });
 
 
-
+/**
+ * Logout user and destroy session
+ */
 router.route('/logout')
     .get(function (req, res) {
-        res.render('logout');
+        res.render('users/logout');
     })
     .post(function (req, res) {
         req.session.destroy();
@@ -57,15 +62,18 @@ router.route('/logout')
     });
 
 
+/**
+ * Create a new user
+ */
 router.route('/register')
     .get(function (req, res) {
-        res.render('register');
+        res.render('users/register');
     })
     .post(function (req, res) {
 
         let userReg = req.body.userReg;
 
-        User.findOne({ username: userReg}).exec()
+        User.findOne({ username: userReg}).exec()       //Checks if username already exists in database.
             .then(function (user) {
                 if (user) {
                     req.session.flash = {
@@ -79,6 +87,9 @@ router.route('/register')
                         password: req.body.passReg
                     });
 
+                    /**
+                     * Validating user inputs
+                     */
                     if(userObject.username.length < 3) {
                         req.session.flash = {
                             type: 'fail',
@@ -102,13 +113,15 @@ router.route('/register')
             });
     });
 
-
+/**
+ * Creating and validating user inputs on a Snippet
+ */
 router.route('/createSnippet')
     .get(function (req, res) {
         if(res.locals.user) {
-            res.render('createSnippet');
+            res.render('snippets/createSnippet');
         } else {
-            res.render('403');
+            res.render('errors/403');
         }
 
     })
@@ -120,6 +133,9 @@ router.route('/createSnippet')
             language: req.body.codeLanguage
         });
 
+        /**
+         * Validating user inputs
+         */
         if(snippetObject.description === '') {
             req.session.flash = {
                 type: 'fail',
@@ -153,6 +169,9 @@ router.route('/createSnippet')
     });
 
 
+/**
+ * Renders the home view
+ */
 router.route('/snippets')
     .get(function (req, res) {
         Snippet.find({  }).sort({createdAt: 'desc'}).exec()
@@ -161,16 +180,18 @@ router.route('/snippets')
             });
     });
 
-
+/**
+ * Delete specific snippet
+ */
 router.route('/delete/:id')
     .get(function (req, res) {
         if(res.locals.user) {
             Snippet.findOne({_id: req.params.id}).exec()
                 .then(function (doc) {
-                    res.render('delete', {snippet: doc});
+                    res.render('snippets/delete', {snippet: doc});
                 });
         } else {
-            res.render('403');
+            res.render('errors/403');
         }
     })
     .post(function (req, res) {
@@ -180,16 +201,18 @@ router.route('/delete/:id')
             });
     });
 
-
+/**
+ * Update specific snippet
+ */
 router.route('/update/:id')
     .get(function (req, res) {
         if(res.locals.user) {
             Snippet.findOne({ _id: req.params.id }).exec()
                 .then (function(doc) {
-                    res.render('update',{snippet: doc});
+                    res.render('snippets/update',{snippet: doc});
                 });
         } else {
-            res.render('403');
+            res.render('errors/403');
         }
     })
     .post(function (req, res) {
@@ -207,12 +230,14 @@ router.route('/update/:id')
             });
     });
 
-
-router.route('/viewSnippet/:id')
+/**
+ * View specific snippet
+ */
+router.route('/snippet/:id')
     .get(function (req, res) {
         Snippet.findOne({ _id: req.params.id }).exec()
             .then (function(doc) {
-                res.render('viewSnippet',{snippet: doc});
+                res.render('snippets/viewSnippet',{snippet: doc});
             });
     })
     .post(function (req, res) {
@@ -221,8 +246,5 @@ router.route('/viewSnippet/:id')
                 res.redirect('/snippets');
             });
     });
-
-
-
 
 module.exports = router;

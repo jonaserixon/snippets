@@ -22,8 +22,12 @@ app.set('view engine', '.hbs');
 require('./config/database').initilize();
 
 
+//the req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+//Static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -39,13 +43,14 @@ app.use(session({
     }
 }));
 
+//Flash
 app.use(function (req, res, next) {
     res.locals.flash = req.session.flash;
-
     delete req.session.flash;
 
     next();
 });
+
 
 app.use(function(req, res, next) {
     res.locals.user = req.session.user;
@@ -60,11 +65,11 @@ app.use('/', require('./routes/routes.js'));
 
 //catch all 404 & 500
 app.use(function (request, response) {
-    response.status(404).render('404');
+    response.status(404).render('errors/404');
 });
 
 app.use(function (request, response) {
-    response.status(500).render('500');
+    response.status(500).render('errors/500');
 });
 
 

@@ -35,9 +35,9 @@ router.route('/login')
 
         //Find username and compare the passwords.
         User.findOne({ username: username }).exec()
-            .then((user) => {
+            .then(function(user) {
                 if (user) {
-                    bcrypt.compare(password, user.password, (err, result) =>  {
+                    bcrypt.compare(password, user.password, function(err, result) {
                         if(err) {
                             return console.log(err);
                         }

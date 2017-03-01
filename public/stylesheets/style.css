@@ -84,7 +84,7 @@ a:hover {
     padding: 5px;
     margin-top: 15px;
     margin-left: 15px;
-    width: 290px;
+    width: 300px;
     max-height: 200px;
     border: 3px solid #012B35;
     border-radius: 10px 10px 10px 10px;
@@ -109,7 +109,15 @@ a:hover {
 }
 
 .snippets pre:hover {
+    cursor: zoom-in;
+}
+
+.snippets:hover > a > pre {
     opacity:1
+}
+
+#viewSnippet pre:hover {
+    cursor: zoom-out;
 }
 
 .snippetLink {
@@ -257,6 +265,15 @@ a:hover {
     margin-top: 10px;
 }
 
+#editIcon {
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+#removeIcon {
+    font-size: 20px;
+}
+
 h2 {
     color: #7CB6CA;
 }
@@ -268,6 +285,10 @@ footer {
     background-color: #3FF161;
     border-radius:  10px 10px 10px 10px;
     opacity: 0.5;
+}
+
+footer i {
+    margin-right: 5px;
 }
 
 

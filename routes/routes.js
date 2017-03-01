@@ -8,6 +8,7 @@ let bcrypt = require('bcrypt-nodejs');
 
 
 //Routes -----------------------------------------------------
+
 router.route('/')
     .get(function (req, res) {
         res.redirect('/snippets');
@@ -24,7 +25,15 @@ router.route('/login')
         let username = req.body.username;
         let password = req.body.password;
 
-        //Finds username and compares the passwords.
+        if(password.length < 6) {
+            req.session.flash = {
+                type: 'fail',
+                message: 'Username or password is invalid!'
+            };
+            return res.redirect('/login');
+        }
+
+        //Find username and compare the passwords.
         User.findOne({ username: username }).exec()
             .then((user) => {
                 if (user) {

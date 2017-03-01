@@ -10,12 +10,11 @@ let userSchema = mongoose.Schema({
     updatedAt: { type: Date, required: true, default: Date.now }
 });
 
-userSchema.pre("save", function(next) {
+userSchema.pre('save', function(next) {
     let user = this;
     bcrypt.genSalt(10, function(err, salt) {
         if(err) { return next(err); }
 
-        // Using https://www.npmjs.com/package/bcrypt-nodejs
         bcrypt.hash(user.password, salt, null, function(err, hash) {
             if(err) { return next(err); }
 

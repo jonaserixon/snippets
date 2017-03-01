@@ -163,8 +163,6 @@ a:hover {
     opacity: 0.8;
 }
 
-
-
 .snippetsUpdate {
     text-align: center;
     padding: 5px;
@@ -175,6 +173,11 @@ a:hover {
     border: 3px solid #012B35;
     border-radius: 10px 10px 10px 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.snippetsUpdate input {
+    text-align: center;
+    margin: 0 auto;
 }
 
 .readSnippet {
@@ -273,6 +276,12 @@ a:hover {
 #removeIcon {
     font-size: 20px;
 }
+
+#logoutBtn {
+    margin-left: 180px;
+}
+
+
 
 h2 {
     color: #7CB6CA;

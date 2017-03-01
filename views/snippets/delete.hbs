@@ -1,25 +1,16 @@
 <form action="/delete/{{snippet._id}} " method="post">
-
     <h2 class="centerDiv">{{snippet.description}}</h2>
-
     <div id="viewSnippet">
         <p><pre><code>{{snippet.content}}</code></pre></p>
     </div>
-
     <div class="centerDiv">
-
         {{#if snippet.updatedAt}}
             <p class="createdAt">Updated at: {{ snippet.updatedAt }}</p>
-
         {{ else }}
             <p class="createdAt">Created at: {{ snippet.createdAt }}</p>
         {{/if}}
-
         <p>Snippet by: <strong>{{snippet.createdBy}}</strong></p>
-
-        <a href="/" style="color: ghostwhite" >Regret</a>
         <button type="submit">Delete</button>
-
     </div>
 </form>
 

@@ -1,18 +1,10 @@
 <div id="headerDiv">
-
         {{#if user}}
             <a href="/logout">Logout</a>
+            <a href="/createSnippet">Create a snippet</a>
         {{else}}
             <a href="/login">Login</a>
-
             <a href="/register">Register</a>
-
         {{/if}}
-
-
-    {{#if user}}
-        <a href="/createSnippet">Create a snippet</a>
-    {{/if}}
-
         <a href="/snippets">View snippets</a>
 </div>
